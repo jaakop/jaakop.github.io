@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Jaakko Sukuvaara</title>
+</head>
+
+<body>
+    <header>
+        <div id="title">
+            <h1>jaakko</h1>
+            <h1>sukuvaara</h1>
+        </div>
+        <div id="intro">
+            <div class="txt-right">
+                <h3><b>Professional</b></h3>
+                <p>Junior Software Developer working with C# and ASP.NET in web development</p>
+            </div>
+            <div class="vertical-divider"></div>
+            <div>
+                <h3><b>Hobbyist</b></h3>
+                <p>Game developer working with Unity</p>
+            </div>
+        </div>
+        <div id="links">
+            <a href="https://www.linkedin.com/in/jaakko-sukuvaara-30ab0618a/" target="_blank"
+                class="fa fa-linkedin-square" aria-label="My LinkedIn"></a>
+            <a href="https://github.com/jaakop" target="_blank" class="fa fa-github-square" aria-label="My Github"></a>
+        </div>
+    </header>
+    <hr>
+    <section class="text-center" id="experience">
+        <h1>Notable experience</h1>
+        <div>
+            <article>
+                <h2>Military virtual instructor</h2>
+                <p class="summary">
+
+                </p>
+                <button onclick="modal(this.nextElementSibling)">Read more</button>
+                <dialog>
+                    <h1>Military virtual instructor</h1>
+                    <p>
+
+                    </p>
+                    <button class=" close-button">Close</button>
+                </dialog>
+            </article>
+            <article>
+                <h2>Taitajat -competition</h2>
+                <p class="summary">
+
+                </p>
+                <button onclick="modal(this.nextElementSibling)">Read more</button>
+                <dialog>
+                    <h1>Taitajat -competition</h1>
+                    <p>
+
+                    </p>
+                    <button class=" close-button">Close</button>
+                </dialog>
+            </article>
+            <article>
+                <h2>Global/Finnish Game Jam</h2>
+                <p class="summary">
+
+                </p>
+                <button onclick="modal(this.nextElementSibling)">Read more</button>
+                <dialog>
+                    <h1>Global/Finnish Game Jam</h1>
+                    <p>
+
+                    </p>
+                    <button class=" close-button">Close</button>
+                </dialog>
+            </article>
+        </div>
+    </section>
+    <section class="text-center" id="highlights">
+        <h1>Highlight Projects</h1>
+        <div>
+            <article>
+                <h2>DnDTable</h2>
+                <p class="summary">
+
+                </p>
+                <button onclick="modal(this.nextElementSibling)"">Read more</button>
+                <dialog>
+                    <h1>DnDTable</h1>
+                    <p>
+                        
+                    </p>
+                    <button class=" close-button">Close</button>
+                </dialog>
+            </article>
+            <article>
+                <h2>Iso-Tammi</h2>
+                <p class="summary">
+
+                </p>
+                <button onclick="modal(this.nextElementSibling)">Read more</button>
+                <dialog>
+                    <h1>Iso-Tammi</h1>
+                    <p>
+
+                    </p>
+                    <button class=" close-button">Close</button>
+                </dialog>
+            </article>
+            <article>
+                <h2>ECS-Engine</h2>
+                <p class="summary">
+
+                </p>
+                <button onclick="modal(this.nextElementSibling)">Read more</button>
+                <dialog>
+                    <h1>ECS-Engine</h1>
+                    <p>
+
+                    </p>
+                    <button class=" close-button">Close</button>
+                </dialog>
+            </article>
+        </div>
+    </section>
+    <hr>
+    <footer>
+        <p><b>Jaakko Sukuvaara</b></p>
+        <p><a href="mailto:jaakko@kronogra.fi">jaakko@kronogra.fi</a></p>
+        <p>Finland</p>
+    </footer>
+</body>
+<script>
+    function modal(dialog) {
+        dialog.showModal();
+        dialog.addEventListener('click', function (event) {
+            var rect = dialog.getBoundingClientRect();
+            var isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+                && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+            if (!isInDialog) {
+                dialog.close();
+            }
+        });
+        dialog.querySelector(".close-button").onclick = function () { dialog.close() };
+    }
+</script>
+</html>

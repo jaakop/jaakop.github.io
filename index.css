@@ -101,7 +101,11 @@ html {
 #highlights div, #experience div {
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
+    gap: 3em
+}
+
+#highlights div > *, #experience div > * {
+    flex: 1;
 }
 
 .vertical-divider {
@@ -139,6 +143,15 @@ hr {
     #title {
         min-height: 10em;
     }
+
+    #highlights div, #experience div {
+        flex-wrap: wrap;
+        gap: 0;
+     }
+
+     #highlights div > *, #experience div > * {
+         flex: unset;
+     }
 }
 
 @media only screen and (max-width: 420px) {

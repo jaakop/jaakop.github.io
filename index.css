@@ -1,5 +1,6 @@
 :root {
     --bg-color: 14, 14, 14;
+    --dialog-bg-color: 55, 55, 55;
 }
 
 @keyframes typingHeaderLeft {
@@ -102,13 +103,13 @@ html {
     text-decoration: none;
 }
 
-#highlights div, #experience div {
+#highlights > div, #experience > div {
     display: flex;
     justify-content: space-evenly;
     gap: 3em
 }
 
-#highlights div > *, #experience div > * {
+#highlights > div > *, #experience > div > * {
     flex: 1;
 }
 
@@ -138,6 +139,30 @@ a:hover:link {
     color: rgba(255, 255, 255, 0.7);
 }
 
+dialog{
+    color: white;
+    background-color: rgb(var(--dialog-bg-color));
+    border:none;
+}
+
+dialog h1 {
+    font-size: 2.5em;
+}
+
+dialog figure {
+    width: min-content;
+    float: right;
+}
+
+dialog img {
+    max-width: 100vw;
+}
+
+dialog > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 hr {
     margin: 3em;

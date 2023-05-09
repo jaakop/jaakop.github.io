@@ -98,6 +98,10 @@ html {
     margin-top: .5em;
 }
 
+#links a{
+    text-decoration: none;
+}
+
 #highlights div, #experience div {
     display: flex;
     justify-content: space-evenly;

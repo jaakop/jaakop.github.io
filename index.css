@@ -16,7 +16,6 @@
 
     100% {
         width: 5em;
-        margin-right: .25em;
     }
 }
 
@@ -33,7 +32,6 @@
 
     100% {
         width: 8em;
-        margin-left: .25em;
     }
 }
 
@@ -143,15 +141,11 @@ dialog{
     color: white;
     background-color: rgb(var(--dialog-bg-color));
     border:none;
+    max-width: 70em;
 }
 
 dialog h1 {
     font-size: 2.5em;
-}
-
-dialog figure {
-    width: min-content;
-    float: right;
 }
 
 dialog img {
@@ -162,6 +156,18 @@ dialog > div {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 2em;
+}
+
+dialog div div {
+    width: 50%;
+    flex-grow: 1;
+}
+
+dialog figure {
+    flex: 0;
+    max-width: min-content;
+    margin:0;
 }
 
 hr {
@@ -180,13 +186,30 @@ hr {
         min-height: 10em;
     }
 
+    #title h1 {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
     #highlights div, #experience div {
         flex-wrap: wrap;
+        flex-direction: column;
         gap: 0;
      }
 
-     #highlights div > *, #experience div > * {
-         flex: unset;
+     dialog div div {
+         padding:0.5em;
+         width: unset;
+     }
+     
+     dialog {
+        padding: 0;
+        margin: 0;
+        max-height: 100%;
+    }
+
+     dialog figure {
+         margin:0;
      }
 }
 

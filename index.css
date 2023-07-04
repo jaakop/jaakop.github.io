@@ -125,6 +125,14 @@ html {
     text-align: right;
 }
 
+.txt-left {
+    text-align: left;
+}
+
+.float-right {
+    float: right;
+}
+
 footer {
     text-align: center;
 }
@@ -168,6 +176,10 @@ dialog figure {
     flex: 0;
     max-width: min-content;
     margin:0;
+}
+
+dialog details {
+    padding: 1em;
 }
 
 hr {

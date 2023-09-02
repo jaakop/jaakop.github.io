@@ -104,11 +104,14 @@ html {
 #highlights > div, #experience > div {
     display: flex;
     justify-content: space-evenly;
-    gap: 3em
+    gap: 3em;
+    flex-wrap: wrap;
 }
 
 #highlights > div > *, #experience > div > * {
     flex: 1;
+    max-width: 50%;
+    min-width: 20em;
 }
 
 .vertical-divider {
@@ -129,6 +132,14 @@ html {
     text-align: left;
 }
 
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
 footer {
     text-align: center;
 }
@@ -139,6 +150,13 @@ a:link, :visited {
 
 a:hover:link {
     color: rgba(255, 255, 255, 0.7);
+}
+
+blockquote {
+    text-align: left;
+    border-left: solid 2px white;
+    padding-left: 1em;
+    width: 75%;
 }
 
 dialog{
@@ -178,6 +196,16 @@ dialog details {
     padding: 1em;
 }
 
+dialog details summary {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.close-button {
+    position: sticky;
+    bottom: 0;
+}
+
 hr {
     margin: 3em;
 }
@@ -198,13 +226,6 @@ hr {
         margin-right: 0;
         margin-left: 0;
     }
-
-    #highlights div, #experience div {
-        flex-wrap: wrap;
-        flex-direction: column;
-        gap: 0;
-     }
-
      dialog div div {
          padding:0.5em;
          width: unset;

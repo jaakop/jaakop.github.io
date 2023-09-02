@@ -35,7 +35,7 @@
     </header>
     <hr>
     <section class="text-center" id="experience">
-        <h1>Notable experience</h1>
+        <h1>Other experience</h1>
         <div>
             <article id="virtual-instructor">
                 <h2>Military virtual instructor</h2>
@@ -208,11 +208,85 @@
                 <h2>Iso-Tammi</h2>
                 <p class="summary">
                     A freeform forest themed tower defense game.
-                    Developed for Global Game Jam 2023 in Finnish Game Jam 2023.
+                    Developed in 48h for Global Game Jam 2023 in Finnish Game Jam 2023.
                 </p>
                 <button onclick="modal(this.nextElementSibling)">Read more</button>
                 <dialog>
                     <h1>Iso-Tammi</h1>
+                    <div>
+                        <div>
+                            <img src="./images/isotammi.png" alt="Iso Tammi gameplay image" height="200px"
+                                loading="lazy" class="float-right">
+                            <blockquote>
+                                Defend the tree of life from deforestation! This game is about defending the Finnish
+                                tree of
+                                life, Iso Tammi, from modern deforestation by using its large network of roots to sprout
+                                new
+                                trees and make them attack the lumberjacks.
+                            </blockquote>
+                            <p>Developed at Finnish Game Jam 2023 Jyväskylä, Iso Tammi is a tower defense game where
+                                your
+                                task is to defend the large oak from Finnish Mythology.
+                                The game was developed in <b>Unity 3D with C#</b> and modeled in Blender. The team was
+                                divided into programmers (me and Lauri) and a 3D artist (Atte) with the rest of the
+                                roles
+                                filled as needed by everyone on the team. </p>
+                            <h2>My role</h2>
+                            <p>During the jam I worked on the gameplay systems such as enemies, spawning, trees and
+                                attacking.</p>
+                            <h3>Enemy spawning</h3>
+                            <p>I implemented the enemy spawning in the GameController object in the scene. With these
+                                controls the user could define a list of enemies that the game would spawn, how likely
+                                they're to spawn, how often a new wave is created, how many enemies are in a wave and
+                                how far away of the trees is the wave created.</p>
+                            <img src="./images/isotammi2.png" alt="Game controller enemy spawning options" height="200px"
+                            loading="lazy">
+                            <h3>Enemies</h3>
+                            <img src="images/isotammi3.png" alt="Image of an Iso Tammi enemy" height="200px"
+                            loading="lazy" class="float-right">
+                            <p>Enemies by themselves were the easiest to create. The enemy script only controls the
+                                enemy characteristics such as enemy speed and damage. The different types were
+                                implemented with Unity prefabs where each enemy got their own characteristics and art
+                            </p>
+                            <p>The enemy script implements moving, attacking and getting damage. But most of these
+                                actions are called from outside the script. By itself the script only turns the sprite
+                                to look at the camera due to sprite implementation in a 3D enviroment. Moving is called
+                                by gameController, which controls and keeps track of all of the enemies in the game. And
+                                getting hit is called by the projectile, that hits the enemy.</p>
+                            <h3>Trees</h3>
+                            <h4>Tree types</h4>
+                                <img src="images/isotammi4.png" alt="Image of all the trees in Iso Tammi" height="300px"
+                                loading="lazy" class="float-right">
+                            <p>The game includes four types of spawnable trees and the Iso Tammi itself. Each tree can
+                                attack with projectiles at the enemy, which can be sped up by pressing *space* when the
+                                tree is selected, with their unique projectiles.</p>
+                            <p>The tree script is similiar to the enemy script that all of the trees use the same
+                                script, but with different serialized values. In these values you can speciefy the
+                                projectile used, and attack paramters. Trees are spawned by the game controller when
+                                player clicks a spot with a tree card selected. Trees eventually die when they've
+                                received enough damage from the enemies.</p>
+                            <h4>Tree projectiles</h4>
+                            <img src="./images/isotammi5.png" alt="Image of all the projectiles in Iso Tammi" width="300px"
+                            loading="lazy" class="float-left">
+                            <p>Each tree has its unique projectile of which each has it's own strength</p>
+                            <p>I impleneted these projectiles with inheritance, the spruce and pine projectiles being
+                                the base class since they didn't have any special effects other than speed and damage.
+                                The others had unique behavior e.i. exploding, hanging around and splitting to multiple
+                                projectiles on hit. For these special effect I could just override behavior of the base
+                                class for exmaple the acorn that explodes on hit.</p>
+                        </div>
+                    </div>
+                    <button class=" close-button">Close</button>
+                </dialog>
+            </article>
+            <article>
+                <h2>HomeSweetConnection</h2>
+                <p class="summary">
+
+                </p>
+                <button onclick="modal(this.nextElementSibling)">Read more</button>
+                <dialog>
+                    <h1>HomeSweetConnection</h1>
                     <p>
 
                     </p>
@@ -220,13 +294,13 @@
                 </dialog>
             </article>
             <article>
-                <h2>ECS-Engine</h2>
+                <h2>Bad Pipes</h2>
                 <p class="summary">
-                    Entity Component System -engine for C# language.
+
                 </p>
                 <button onclick="modal(this.nextElementSibling)">Read more</button>
                 <dialog>
-                    <h1>ECS-Engine</h1>
+                    <h1>Bad Pipes</h1>
                     <p>
 
                     </p>

@@ -263,4 +263,7 @@ hr {
     #intro .vertical-divider {
         width: 90% !important;
     }
+    dialog img {
+        float: none !important;
+    }
 }

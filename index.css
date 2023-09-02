@@ -240,6 +240,9 @@ hr {
      dialog figure {
          margin:0;
      }
+    dialog > div {
+        flex-direction: column-reverse;
+    }
 }
 
 @media only screen and (max-width: 420px) {

@@ -239,6 +239,11 @@
                                 controls the user could define a list of enemies that the game would spawn, how likely
                                 they're to spawn, how often a new wave is created, how many enemies are in a wave and
                                 how far away of the trees is the wave created.</p>
+                            <img src="./images/isotammi2.png" alt="Game controller enemy spawning options" height="200px"
+                            loading="lazy">
+                            <p>
+                                Enemy list is a list of structs which are marked serializable so they are able to be changed in the editor. This makes it very easy to add new enemies and balance the game by changing the likely hood of each enemy.
+                            </p>
                             <details>
                                 <summary>Code snippet</summary>
                                 <pre>
@@ -259,8 +264,6 @@
 }</code>
                                 </pre>
                             </details>
-                            <img src="./images/isotammi2.png" alt="Game controller enemy spawning options" height="200px"
-                            loading="lazy">
                             <h3>Enemies</h3>
                             <img src="images/isotammi3.png" alt="Image of an Iso Tammi enemy" height="200px"
                             loading="lazy" class="float-right">

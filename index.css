@@ -111,7 +111,7 @@ html {
 #highlights > div > *, #experience > div > * {
     flex: 1;
     max-width: 50%;
-    min-width: 20em;
+    min-width: min(20em, 100%)
 }
 
 .vertical-divider {
@@ -216,6 +216,19 @@ hr {
     border-color: rgba(255, 255, 255, 0.05);
     border-width: 2px;
 }
+pre {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}
+code {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.5em;
+    border-radius: 5px;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    overflow-x: auto;
+    max-width: 75vw;
+}
 
 @media only screen and (max-width: 650px) { 
     #title {
@@ -240,6 +253,7 @@ hr {
      dialog figure {
          margin:0;
      }
+
     dialog > div {
         flex-direction: column-reverse;
     }

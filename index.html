@@ -239,6 +239,26 @@
                                 controls the user could define a list of enemies that the game would spawn, how likely
                                 they're to spawn, how often a new wave is created, how many enemies are in a wave and
                                 how far away of the trees is the wave created.</p>
+                            <details>
+                                <summary>Code snippet</summary>
+                                <pre>
+<code>public class gameController : MonoBehaviour
+{
+    [SerializeField]
+    private List&lt;EnemySpawnOption&gt; enemies = new List&lt;EnemySpawnOption&gt;();
+
+    ...
+
+    [System.Serializable]
+    private struct EnemySpawnOption
+    {
+        public GameObject Prefab;
+        [Range(0f, 1f)]
+        public float Weight;
+    }
+}</code>
+                                </pre>
+                            </details>
                             <img src="./images/isotammi2.png" alt="Game controller enemy spawning options" height="200px"
                             loading="lazy">
                             <h3>Enemies</h3>
@@ -274,6 +294,18 @@
                                 The others had unique behavior e.i. exploding, hanging around and splitting to multiple
                                 projectiles on hit. For these special effect I could just override behavior of the base
                                 class for exmaple the acorn that explodes on hit.</p>
+                                <details>
+                                    <summary>Code snippet</summary>
+                                    <pre>
+<code>protected override void onHit(GameObject enemy)
+{
+    var enemiesInArea = gameController.GetEnemiesInArea(transform.position, splashRadius);
+    enemiesInArea.ForEach(e => e.GetComponent<enemyScript>().GetHit(splashDamage));
+    
+    base.onHit(enemy);
+}</code>
+                                    </pre>
+                                </details>
                         </div>
                     </div>
                     <button class=" close-button">Close</button>

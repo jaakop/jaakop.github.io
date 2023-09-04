@@ -208,6 +208,11 @@ dialog figure {
     margin:0;
 }
 
+dialog figure img {
+    max-width: 95vw;
+    height: auto;
+}
+
 dialog details {
     padding: 1em;
 }

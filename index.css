@@ -205,6 +205,16 @@ dialog details summary {
     font-weight: bold;
 }
 
+dialog table {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+table, th, td {
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+
 .close-button {
     position: sticky;
     bottom: 0;

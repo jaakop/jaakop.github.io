@@ -157,6 +157,7 @@ blockquote {
     border-left: solid 2px white;
     padding-left: 1em;
     width: 75%;
+    margin-left: 1.5em;
 }
 
 dialog{
@@ -165,6 +166,10 @@ dialog{
     border: 5px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     max-width: 70em;
+}
+
+dialog div, dialog h1 {
+    text-align: left;
 }
 
 dialog::backdrop {

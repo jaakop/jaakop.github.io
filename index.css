@@ -181,7 +181,9 @@ dialog h1 {
 }
 
 dialog img {
-    max-width: 100vw;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
 }
 
 dialog > div {
@@ -263,7 +265,6 @@ code {
     background: none;
     margin-top: .75em;
     margin-bottom: .75em;
-    padding-right: 1em;
   }
   
   /* Handle */
@@ -296,6 +297,9 @@ code {
         padding: 0;
         margin: 0;
         max-height: 100%;
+        border: none;
+        border-radius: 0;
+        padding: 0.5em;
     }
 
      dialog figure {

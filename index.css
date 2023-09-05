@@ -215,7 +215,7 @@ dialog figure img {
 }
 
 dialog details {
-    padding: 1em;
+    padding-left: 1em;
 }
 
 dialog details summary {

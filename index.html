@@ -449,7 +449,7 @@
                             </p>
                             <p>The enemy script implements moving, attacking and getting damage. But most of these
                                 actions are called from outside the script. By itself the script only turns the sprite
-                                to look at the camera due to sprite implementation in a 3D enviroment. Moving is called
+                                to look at the camera due to sprite implementation in a 3D environment. Moving is called
                                 by gameController, which controls and keeps track of all of the enemies in the game. And
                                 getting hit is called by the projectile, that hits the enemy.</p>
                             <h3>Trees</h3>
@@ -459,23 +459,23 @@
                             <p>The game includes four types of spawnable trees and the Iso Tammi itself. Each tree can
                                 attack with projectiles at the enemy, which can be sped up by pressing *space* when the
                                 tree is selected, with their unique projectiles.</p>
-                            <p>The tree script is similiar to the enemy script that all of the trees use the same
-                                script, but with different serialized values. In these values you can speciefy the
-                                projectile used, and attack paramters. Trees are spawned by the game controller when
+                            <p>The tree script is similar to the enemy script that all of the trees use the same
+                                script, but with different serialized values. In these values you can specify the
+                                projectile used, and attack parameters. Trees are spawned by the game controller when
                                 player clicks a spot with a tree card selected. Trees eventually die when they've
                                 received enough damage from the enemies.</p>
                             <h4>Tree projectiles</h4>
                             <img src="./images/isotammi5.png" alt="Image of all the projectiles in Iso Tammi"
                                 width="300px" loading="lazy">
                             <p>Each tree has its unique projectile of which each has it's own strength</p>
-                            <p>I impleneted these projectiles with inheritance, the spruce and pine projectiles being
+                            <p>I implemented these projectiles with inheritance, the spruce and pine projectiles being
                                 the base class since they didn't have any special effects other than speed and damage.
                                 The others had unique behavior e.i. exploding, hanging around and splitting to multiple
                                 projectiles on hit. For these special effect I could just override behavior of the base
-                                class for exmaple the acorn that explodes on hit.</p>
-                            <details>
-                                <summary>Code snippet</summary>
-                                <pre>
+                                class for example the acorn that explodes on hit.</p>
+                                <details>
+                                    <summary>Code snippet</summary>
+                                    <pre>
 <code>protected override void onHit(GameObject enemy)
 {
     var enemiesInArea = gameController.GetEnemiesInArea(transform.position, splashRadius);

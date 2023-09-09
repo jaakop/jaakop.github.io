@@ -40,6 +40,10 @@ html {
     color: white
 }
 
+h4, h5 {
+    font-size: 1rem;
+}
+
 #title {
     display: flex;
     position: relative;

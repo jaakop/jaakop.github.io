@@ -111,7 +111,8 @@
                             <p>
                                 The comleted websites were judged on desing, technical implementation, accordance with
                                 web standards and other features of the site. <br>
-                                The website that I made can be found preserved here: <a target="_blank" href="https://jaakop.github.io/Taitaja-2021-Finaali/">Website</a>
+                                The website that I made can be found preserved here: <a target="_blank"
+                                    href="https://jaakop.github.io/Taitaja-2021-Finaali/">Website</a>
                             </p>
                             <p>See also my employer's blog post about it at the time: <a target="_blank"
                                     href="https://blog.pinja.com/en/finnish-champion-web-development">Blog post</a> <br>
@@ -201,9 +202,155 @@
                 <button onclick="modal(this.nextElementSibling)"">Read more</button>
                 <dialog>
                     <h1>DnDTable</h1>
-                    <p>
-                        
-                    </p>
+                    <div>
+                        <div>
+                            <p>For my vocational degree in computer programming (2018-2021) I had to do a project using technologies taught in
+                                the program: C# , WinForms and MSSQL. So I chose to develop a map tool to be used in DnD and
+                                other games.</p>
+                            <h2>Design</h2>
+                            <p>The goal was to have two modes of the tool the level editor tool and the game master tool. With the level editor
+                                tool the user could create levels with 2D Tilemaps. After creating the maps for a game night the user would
+                                launch the game master tool. In this tool the user could render the maps on a separate screen and keep notes for
+                                themselves about the game session for future reference.</p>
+                            <img src="./images/DnDTableMockUp.jpg" alt="Mock up of the level editor" loading="lazy" width="500px">
+                            <h2>Implementation</h2>
+                            <details>
+                                <summary>State diagram</summary>
+                                <img src="./images/dndtablediagram1.svg" alt="State diagram of the app" loading="lazy"
+                                    width="500px">
+                            </details>
+                            <p>The tool opens with a "main menu" from which the level editor and GM tool can be opened</p>
+                            <img src="./images/DnDTableMainMenu.png" alt="Main menu window" loading="lazy" width="300px">
+                            <h3>Game master tool</h3>
+                            <details>
+                                <summary>State diagram</summary>
+                                <img src="./images/dndtablediagram2.svg" alt="State diagram of the GM tools" loading="lazy"
+                                    width="500px">
+                            </details>
+                            <p>The game master tool consists of two windows that are opened after a game is created. The game window, a full screen
+                                window that is placed on the monitor selected in the main menu and should be visible to all players when playing a
+                                tabletop game. Then a game master window, from where the gaming session can be managed</p>
+                            <img src="./images/DnDTableRenderedLevel.png" alt="Rendered menu in the game mode" loading="lazy" width="500px">
+                            <h4>GM tools</h4>
+                            <img src="./images/DnDTableGMTools.png" alt="GM tools in the game mode" loading="lazy" width=400px">
+                            <p>In the game master tools levels can be loaded and drawn on to the game window. Additionally the game master can keep
+                                notes of the session on the game master window. Both of these options are saved into a MSSQL database from which
+                                they can be fetched again when the gaming session in continued.</p>
+                            <h3>Tilemap level editor</h3>
+                            <details>
+                                <summary>State diagram</summary>
+                                <img src="./images/dndtablediagram3.svg" alt="State diagram of the level editor" loading="lazy"
+                                    width="500px">
+                            </details>
+                            <p>The level editor is divided into two sections. On the left the map itself and on the right the controls.</p>
+                            <h4>Map</h4>
+                            <p>The editor shown portion of the map and can be navigated with scrollbars horizontally and vertically. The editor
+                                consists of the map tiles which can be clicked on to place a tile texture on them or clear it.</p>
+                            <img src="./images/DnDTableEditor.png" alt="Map of tiles in the editor" loading="lazy" width="500px">
+                            <p>The tiles are implemeted as images that windows forms draws based on camera location and grid coordinates.
+                                The selected tile is calculated when mouse moves over the grid. This is for highlight etc. When mouse is clicked on
+                                the grid the selected tile is updated with the new tile information.</p>
+                            <details>
+                                <summary>Code snippet</summary>
+                                <pre>
+<code>foreach (Tile tile in level.Layers[(int)layerSelection.Value].Tiles)
+{
+    int tileX = tile.X * tileSize - cam.Location().X * tileSize + cam.FovX / 2 * tileSize;
+    int tileY = tile.Y * tileSize - cam.Location().Y * tileSize + cam.FovY / 2 * tileSize;
+
+    if (pos.X > tileX && pos.X < tileX + tileSize)
+    {
+        if (pos.Y > tileY && pos.Y < tileY + tileSize)
+        {
+            if (tile.X < cam.Location().X + cam.FovX / 2 &
+                tile.X > cam.Location().X - cam.FovX / 2 &
+                tile.Y < cam.Location().Y + cam.FovY / 2 &
+                tile.Y > cam.Location().Y - cam.FovY / 2)
+            {
+                selectedTile = tile;
+            }
+        }
+    }
+}</code>
+                                </pre>
+                            </details>
+                            <h4>Controls</h4>
+                            <p>In the controls panel there are UI for level file handling, layers, minimap and the tilemaps.</p>
+                            <img src="./images/DnDTableEditorTools.png" alt="Editor tools" loading="lazy" width="300px">
+                            <h5>Level files</h5>
+                            <p>The user is able to save the level into a file using JSON data format. To accomplish this I created a static
+                                FileHandler class that can save a level and load a level. To keep the file size small only tiles with an image are
+                                saved and all other are removed as for each saved tile the coordinates are saved with the image details so that the
+                                level can be re-constructed.</p>
+                            <details>
+                                <summary>Code snippet</summary>
+                                <pre>
+<code>public static void SaveLevel(Level lvl, string path)
+{
+    Level level = new Level();
+    foreach(TileMap map in lvl.Maps)
+    {
+        level.AddAMap(map);
+    }
+    foreach(Layer layer in lvl.Layers)
+    {
+        Layer newLayer = new Layer();
+        foreach(Tile tile in layer.Tiles)
+        {
+            if (tile.Image != null)
+            {
+                Tile newTile = tile;
+                newTile.PrepareForSaving();
+                newLayer.AddTile(newTile);
+            }
+        }
+        level.AddALayer(newLayer);
+    }
+    JsonSerializer serializer = new JsonSerializer();
+    using(StreamWriter wr = new StreamWriter(path))
+    {
+        using(JsonWriter writer = new JsonTextWriter(wr))
+        {
+            serializer.Serialize(writer, level);
+        }
+    }
+}</code>
+                                </pre>
+                            </details>
+                            <h5>Layers</h5>
+                            <p>The user can add layers of tile grids to the level which are then rendered on top of each other. With this the user
+                                can create complex sceneries with simple tilemaps.</p>
+                            <h5>Minimap</h5>
+                            <p>Due to the limited size of the grid that can be shown at a time, the editor draws a minimap of the level for the user
+                                to be able to have a clearer image of the whole map. This is done by selecting a tile for an coordinate from the
+                                highest layer, that has an image. Then the image is scaled to 1 pixel size and placed on to the minimap.</p>
+                            <details>
+                                <summary>Code snippet</summary>
+                                <pre>
+<code>public static Color GetPixel(Image image)
+{
+    Bitmap bitmap = new Bitmap(1, 1);
+
+    using (Graphics g = Graphics.FromImage(bitmap))
+    {
+       g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+       g.DrawImage(image, 0, 0, 1, 1);
+    };
+
+    Color color = bitmap.GetPixel(0, 0);
+    return color;
+}</code>
+                                </pre>
+                            </details>
+                            <h5>Tilemaps</h5>
+                            <p>Tilemaps are 2D images that consist of drawn tiles of specified width and height. This image can be then parsed into
+                                seperate tiles, from which a level can be built from.
+                                When adding a tilemap the editor asks for the path of the image and the size of the tiles. After this information is
+                                given the image is seperated into tile buttons. When clicking a tile it becomes selected and can then be placed onto
+                                the level. These tile buttons are implemented with WinForm buttons.
+                            </p>
+                        </div>
+                    </div>
                     <button class=" close-button">Close</button>
                 </dialog>
             </article>
@@ -232,7 +379,8 @@
                                     <td>
                                         <a target="_blank" href="https://jaakop.itch.io/iso-tammi">Itch.io</a>,
                                         <a target="_blank" href="https://github.com/Fgj-vky/Iso-Tammi">Github</a>,
-                                        <a target="_blank" href="https://globalgamejam.org/2023/games/iso-tammi-4">Global Game Jam</a>
+                                        <a target="_blank"
+                                            href="https://globalgamejam.org/2023/games/iso-tammi-4">Global Game Jam</a>
                                     </td>
                                 </tr>
                             </table>
@@ -257,17 +405,20 @@
                                 attacking.</p>
                             <details>
                                 <summary>Class diagram</summary>
-                                <img src="./images/isotammigraph1.svg" alt="Class diagram of my work" loading="lazy" width="500px">
+                                <img src="./images/isotammigraph1.svg" alt="Class diagram of my work" loading="lazy"
+                                    width="500px">
                             </details>
                             <h3>Enemy spawning</h3>
                             <p>I implemented the enemy spawning in the GameController object in the scene. With these
                                 controls the user could define a list of enemies that the game would spawn, how likely
                                 they're to spawn, how often a new wave is created, how many enemies are in a wave and
                                 how far away of the trees is the wave created.</p>
-                            <img src="./images/isotammi2.png" alt="Game controller enemy spawning options" height="200px"
-                            loading="lazy">
+                            <img src="./images/isotammi2.png" alt="Game controller enemy spawning options"
+                                height="200px" loading="lazy">
                             <p>
-                                Enemy list is a list of structs which are marked serializable so they are able to be changed in the editor. This makes it very easy to add new enemies and balance the game by changing the likely hood of each enemy.
+                                Enemy list is a list of structs which are marked serializable so they are able to be
+                                changed in the editor. This makes it very easy to add new enemies and balance the game
+                                by changing the likely hood of each enemy.
                             </p>
                             <details>
                                 <summary>Code snippet</summary>
@@ -291,7 +442,7 @@
                             </details>
                             <h3>Enemies</h3>
                             <img src="images/isotammi3.png" alt="Image of an Iso Tammi enemy" height="200px"
-                            loading="lazy">
+                                loading="lazy">
                             <p>Enemies by themselves were the easiest to create. The enemy script only controls the
                                 enemy characteristics such as enemy speed and damage. The different types were
                                 implemented with Unity prefabs where each enemy got their own characteristics and art
@@ -303,7 +454,7 @@
                                 getting hit is called by the projectile, that hits the enemy.</p>
                             <h3>Trees</h3>
                             <h4>Tree types</h4>
-                                <img src="images/isotammi4.png" alt="Image of all the trees in Iso Tammi" height="300px"
+                            <img src="images/isotammi4.png" alt="Image of all the trees in Iso Tammi" height="300px"
                                 loading="lazy">
                             <p>The game includes four types of spawnable trees and the Iso Tammi itself. Each tree can
                                 attack with projectiles at the enemy, which can be sped up by pressing *space* when the
@@ -314,17 +465,17 @@
                                 player clicks a spot with a tree card selected. Trees eventually die when they've
                                 received enough damage from the enemies.</p>
                             <h4>Tree projectiles</h4>
-                            <img src="./images/isotammi5.png" alt="Image of all the projectiles in Iso Tammi" width="300px"
-                            loading="lazy">
+                            <img src="./images/isotammi5.png" alt="Image of all the projectiles in Iso Tammi"
+                                width="300px" loading="lazy">
                             <p>Each tree has its unique projectile of which each has it's own strength</p>
                             <p>I impleneted these projectiles with inheritance, the spruce and pine projectiles being
                                 the base class since they didn't have any special effects other than speed and damage.
                                 The others had unique behavior e.i. exploding, hanging around and splitting to multiple
                                 projectiles on hit. For these special effect I could just override behavior of the base
                                 class for exmaple the acorn that explodes on hit.</p>
-                                <details>
-                                    <summary>Code snippet</summary>
-                                    <pre>
+                            <details>
+                                <summary>Code snippet</summary>
+                                <pre>
 <code>protected override void onHit(GameObject enemy)
 {
     var enemiesInArea = gameController.GetEnemiesInArea(transform.position, splashRadius);
@@ -333,7 +484,7 @@
     base.onHit(enemy);
 }</code>
                                     </pre>
-                                </details>
+                            </details>
                         </div>
                     </div>
                     <button class=" close-button">Close</button>

@@ -37,7 +37,8 @@
 
 html {
     background-color: rgb(var(--bg-color));
-    color: white
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h4, h5 {

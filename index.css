@@ -45,6 +45,21 @@ h4, h5 {
     font-size: 1rem;
 }
 
+button {
+    background-color: white;
+    color: black;
+    box-shadow: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: rgba(255,255,255, 0.75);
+    cursor: pointer;
+}
+
 #title {
     display: flex;
     position: relative;

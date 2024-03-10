@@ -180,6 +180,11 @@ blockquote {
     margin-left: 1.5em;
 }
 
+section {
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
 article {
     border-radius: 5px;
     text-shadow: rgb(var(--bg-color)) 2px 1px 2px;
@@ -324,6 +329,11 @@ code {
         margin-right: 0;
         margin-left: 0;
     }
+
+    section {
+        margin: 0;
+    }
+
      dialog div div {
          width: unset;
      }

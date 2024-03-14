@@ -549,7 +549,7 @@
 
     function checkNavigationHash() {
         let dialogModal = document.querySelector(`${window.location.hash} dialog`)
-        if(dialogModal) {
+        if(window.location.hash && dialogModal) {
             modal(dialogModal);
         }
     }

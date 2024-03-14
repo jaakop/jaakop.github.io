@@ -258,6 +258,27 @@ dialog table {
     margin-bottom: 1em;
 }
 
+.dialogHeader {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.dialogHeader button {
+    font-size: xx-large;
+    color: white;
+    background-color: transparent;
+}
+
+.dialogHeader button:hover {
+    color: rgba(255, 255, 255, .8);
+}
+
+.dialogHeader button:active {
+    color: rgba(255, 255, 255, .5);
+}
+
+
 table, th, td {
     border: 2px solid white;
     border-collapse: collapse;

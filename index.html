@@ -45,7 +45,10 @@
                 </p>
                 <button onclick="modal(this.nextElementSibling)">Read more</button>
                 <dialog>
-                    <h1>Military virtual instructor</h1>
+                    <div class="dialogHeader">
+                        <h1>Military virtual instructor</h1>
+                        <button onclick="getShareLink(this.parentElement.parentElement.parentElement)" title="Copy Link"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
+                    </div>
                     <div>
                         <div>
                             <p>
@@ -90,7 +93,10 @@
                 </p>
                 <button onclick="modal(this.nextElementSibling)">Read more</button>
                 <dialog>
-                    <h1>Taitajat -competition</h1>
+                    <div class="dialogHeader">
+                        <h1>Taitajat -competition</h1>
+                        <button onclick="getShareLink(this.parentElement.parentElement.parentElement)" title="Copy Link"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
+                    </div>
                     <div>
                         <div>
                             <p>
@@ -137,7 +143,7 @@
                     <button class=" close-button">Close</button>
                 </dialog>
             </article>
-            <article style="background: linear-gradient(to right, transparent, rgb(14, 14, 14) 30%), url(https://s3-us-west-1.amazonaws.com/ggj/site/site-images/GGJ00_Logo_Dark.svg) left no-repeat;">
+            <article id="ggj" style="background: linear-gradient(to right, transparent, rgb(14, 14, 14) 30%), url(https://s3-us-west-1.amazonaws.com/ggj/site/site-images/GGJ00_Logo_Dark.svg) left no-repeat;">
                 <h2>Global/Finnish Game Jam</h2>
                 <p class="summary">
                 <p>All the way from 2015 I've participated in many Finnish Game Jam events during the Global Game Jam.
@@ -145,7 +151,10 @@
                 </p>
                 <button onclick="modal(this.nextElementSibling)">Read more</button>
                 <dialog>
-                    <h1>Global/Finnish Game Jam</h1>
+                    <div class="dialogHeader">
+                        <h1>Global/Finnish Game Jam</h1>
+                        <button onclick="getShareLink(this.parentElement.parentElement.parentElement)" title="Copy Link"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
+                    </div>
                     <div>
                         <div>
                             <p>
@@ -196,15 +205,18 @@
     <section class="text-center" id="highlights">
         <h1>My projects</h1>
         <div>
-            <article style="background: linear-gradient(to right, transparent, rgb(14, 14, 14) 30%), url(./images/DnDTableEditorCoverImg.png) left no-repeat;">
+            <article id="DnDTable" style="background: linear-gradient(to right, transparent, rgb(14, 14, 14) 30%), url(./images/DnDTableEditorCoverImg.png) left no-repeat;">
                 <h2>DnDTable</h2>
                 <p class="summary">
                     Vocational school final assignment. Includes sprite tile based 2D <b>map editor</b> and a <b>game
                         mode</b> to be used in <abbr title="Dungeon and Dragons">DnD</abbr> games.
                 </p>
-                <button onclick="modal(this.nextElementSibling)"">Read more</button>
+                <button onclick="modal(this.nextElementSibling)">Read more</button>
                 <dialog>
-                    <h1>DnDTable</h1>
+                    <div class="dialogHeader">
+                        <h1>DnDTable</h1>
+                        <button onclick="getShareLink(this.parentElement.parentElement.parentElement)" title="Copy Link"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
+                    </div>
                     <div>
                         <div>
                             <table>
@@ -369,7 +381,7 @@
                     <button class=" close-button">Close</button>
                 </dialog>
             </article>
-            <article style="background: linear-gradient(to right, transparent, rgb(14, 14, 14) 30%), url(./images/isotammi.png) left no-repeat;">
+            <article id="Iso-Tammi" style="background: linear-gradient(to right, transparent, rgb(14, 14, 14) 30%), url(./images/isotammi.png) left no-repeat;">
                 <h2>Iso-Tammi</h2>
                 <p class="summary">
                     A freeform forest themed tower defense game.
@@ -377,7 +389,10 @@
                 </p>
                 <button onclick="modal(this.nextElementSibling)">Read more</button>
                 <dialog>
-                    <h1>Iso-Tammi</h1>
+                    <div class="dialogHeader">
+                        <h1>Iso-Tammi</h1>
+                        <button onclick="getShareLink(this.parentElement.parentElement.parentElement)" title="Copy Link"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
+                    </div>
                     <div>
                         <div>
                             <table>
@@ -518,8 +533,8 @@
     function modal(dialog) {
         dialog.showModal();
         dialog.addEventListener('click', function (event) {
-            var rect = dialog.getBoundingClientRect();
-            var isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+            let rect = dialog.getBoundingClientRect();
+            let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height
                 && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
             if (!isInDialog) {
                 dialog.close();
@@ -527,6 +542,20 @@
         });
         dialog.querySelector(".close-button").onclick = function () { dialog.close() };
     }
+
+    function getShareLink(article) {
+        navigator.clipboard.writeText(`${window.location.origin}${window.location.pathname}#${article.id}`)
+    }
+
+    function checkNavigationHash() {
+        let dialogModal = document.querySelector(`${window.location.hash} dialog`)
+        if(dialogModal) {
+            modal(dialogModal);
+        }
+    }
+
+
+    checkNavigationHash();
 </script>
 
 </html>

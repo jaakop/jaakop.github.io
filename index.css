@@ -273,14 +273,26 @@ dialog table {
 
 .dialogHeader {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     flex-direction: row;
+}
+
+.dialogHeader h1 {
+    margin-right: auto;
 }
 
 .dialogHeader button {
     font-size: xx-large;
     color: white;
     background-color: transparent;
+}
+
+.dialogHeader a img {
+    height: 2em;
+}
+
+.dialogHeader a:hover img {
+    filter: brightness(0.8);
 }
 
 .dialogHeader button:hover {

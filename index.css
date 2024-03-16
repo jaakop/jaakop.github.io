@@ -190,6 +190,19 @@ article {
     text-shadow: rgb(var(--bg-color)) 2px 1px 2px;
 }
 
+.logoLink img {
+    height: 2.5rem;
+    position: relative;
+    float: left;
+    left: 0.5rem;
+    top: 0.5rem;
+    filter: drop-shadow(-3px 10px 10px black);
+}
+
+.logoLink:hover img {
+    filter: drop-shadow(-3px 10px 10px black) brightness(0.8);
+}
+
 dialog{
     color: white;
     background-color: rgb(var(--dialog-bg-color));

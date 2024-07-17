@@ -106,6 +106,13 @@ h4, h5 {
     text-decoration: none;
 }
 
+#links img{
+    height: 3.4rem;
+}
+#links img:hover{
+    filter: opacity(.7);
+}
+
 #highlights > div, #experience > div {
     display: flex;
     justify-content: space-evenly;

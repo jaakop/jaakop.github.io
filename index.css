@@ -402,9 +402,10 @@ code {
     background-clip: padding-box;
   }
 
-@media only screen and (max-width: 650px) { 
+@media only screen and (max-width: 700px) { 
     #title {
         min-height: 10em;
+        max-width: 600px;
     }
 
     #title h1 {
@@ -438,6 +439,16 @@ code {
 
     dialog > div {
         flex-direction: column-reverse;
+    }
+
+    article#Slug-Wars {
+        order: 0;
+    }
+    article#Wrapped {
+        order: 1;
+    }
+    article#Long-Laugh-The-King {
+        order: 2;
     }
 }
 

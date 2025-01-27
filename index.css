@@ -118,11 +118,13 @@ h4, h5 {
     justify-content: space-evenly;
     gap: 3em;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 #highlights > div > *, #experience > div > * {
     flex: 1;
     max-width: 50%;
+    max-height: min-content;
     min-width: min(20em, 100%)
 }
 
@@ -215,6 +217,8 @@ article h2 {
     position: absolute;
     top: 0.5rem;
     left: 0.5em;
+    font-size: 3rem;
+    text-decoration: none;
 }
 
 .logoLink img {
@@ -310,8 +314,17 @@ dialog table {
     background-color: transparent;
 }
 
+.dialogHeader a {
+    text-decoration: none;
+}
+
+.dialogHeader .fa {
+    font-size: xx-large;
+}
+
 .dialogHeader a img {
     height: 2em;
+    min-width: 2em;
 }
 
 .dialogHeader a:hover img {
